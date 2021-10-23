@@ -1,0 +1,46 @@
+#multi host ingress example
+#============================
+#Create deployment with hello-app:1.0
+#    kubectl create deployment hello-app --image=gcr.io/google-samples/hello-app:1.0
+#Expose service for hello-app deployment
+#    kubectl expose deployment hello-app --port=8080 --target-port=8080
+#
+#
+#Create deployment with weatherapp 
+#   kubectl create deployment weatherapp --image=prabakardocker/weatherapi:v1
+#Expose service for weatherapp
+#   kubectl expose deployment weatherapp --port=8080 --target-port=8080
+
+
+#create ingress resources using below configuration
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  name: ingress-resource
+  namespace: default
+spec:
+  rules:
+  - host: 35.238.135.34.nip.io
+    http:
+      paths:
+      - backend:
+          service:
+            name: hello-app
+            port:
+              number: 8080
+        path: /hello
+        pathType: Prefix
+  - host: app.35.238.135.34.nip.io
+    http:
+      paths:
+      - backend:
+          service:
+            name: weatherapp
+            port:
+              number: 8080
+        path: /
+        pathType: Prefix
