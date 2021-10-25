@@ -1,6 +1,5 @@
 # https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
-#
-#
+# Strategy, types, max surge, unavailable
 #
 apiVersion: apps/v1
 kind: Deployment

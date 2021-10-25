@@ -1,0 +1,20 @@
+# https://kubernetes.io/docs/concepts/workloads/pods/
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "cmapp"
+  namespace: default
+  labels:
+    app: "cmapp"
+spec:
+  containers:
+  - name: cmapp
+    image: prabakardocker/configmapdemo
+    env:
+    - name: greet
+      valueFrom:
+        configMapKeyRef:
+          name: greetcm
+          key: greet
+  restartPolicy: Never
+   

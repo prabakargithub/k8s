@@ -1,4 +1,6 @@
 #Pod creation, container ports, command, resources
+#restart policy - Always, Never, onFailure
+#
 apiVersion: v1
 kind: Pod
 metadata:
