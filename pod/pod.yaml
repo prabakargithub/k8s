@@ -1,0 +1,5 @@
+#Pod creation, container ports, command, resources
+apiVersion: v1
+kind: Pod
+metadata:
+spec:

@@ -1,0 +1,25 @@
+
+#Init container
+#Side car container or  multi container pod
+# https://kubernetes.io/docs/concepts/workloads/pods/
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "app2"
+  namespace: default
+  labels:
+    app: "app2"
+spec:
+  initContainers:
+  # initContainers:
+        # Init containers are exactly like regular containers, except:
+          # - Init containers always run to completion.
+          # - Each init container must complete successfully before the next one starts.
+  - name: init-app
+    image: busybox
+  containers:
+  - name: app2
+    image: "nginx"
+    ports:
+    - containerPort: 80
+  restartPolicy: Always
