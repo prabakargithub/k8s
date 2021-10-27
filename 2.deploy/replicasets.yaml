@@ -1,0 +1,29 @@
+#Connecting pod  to replicaset
+#apiVersion: apps/v1
+#kind: ReplicaSet
+#metadata:
+#spec:
+#  replicas:
+#  selector:
+#     matchLables:
+#        pod: label
+#  template:
+#    copy pod definition from metadata - label => pod: label
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: redis-rs
+spec:
+  # replicas: 3
+  # selector:
+  #   matchLabels:
+  #     app: database
+  template:
+    metadata:
+      labels:
+        app: database
+    spec: 
+      containers:
+      - name: busybox
+        image: redis
