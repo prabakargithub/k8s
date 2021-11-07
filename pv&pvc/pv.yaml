@@ -1,0 +1,20 @@
+#Static or Manual provisioning
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mypv
+spec:
+  capacity:
+    storage: 200Mi
+  storageClassName: myapp-sc
+  accessModes:
+    - ReadWriteOnce #RWO - mounted read write in single node, RWX - RW in multiple node, ROX- Read only in multiple node
+  #persistentVolumeReclaimPolicy: Recycle(used in dynamic provisioning- deprecated) | 
+  #                               Retain(default) |
+  #                                Delete
+  # volume types
+  #    - it is mandatory to provide volume type 
+  #    - In real time, volume type will configured based on the platform(hostPath not recommended)
+  hostPath:
+      path: /data 
+       
